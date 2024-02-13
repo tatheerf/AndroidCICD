@@ -46,7 +46,7 @@ jobs: #tasks you command github actions to execute through yaml file --series of
       - name: Upload Test Report
         uses: actions/upload-artifact@v3.1.3
         with:
-          name: AndroidCICD.apk
+          name: unit_test_report
           path: app/build/reports/tests/testDebugUnitTest/
 
 
