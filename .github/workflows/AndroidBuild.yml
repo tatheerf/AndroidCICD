@@ -38,7 +38,7 @@ jobs: #tasks you command github actions to execute through yaml file --series of
         uses: actions/checkout@v4.1.1
 
       - name: Run Tests
-        run: gradlew test
+        run: ./gradlew test
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v3.1.3
