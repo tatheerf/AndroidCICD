@@ -37,6 +37,9 @@ jobs: #tasks you command github actions to execute through yaml file --series of
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
       - name: Run Tests
         run: ./gradlew test
 
