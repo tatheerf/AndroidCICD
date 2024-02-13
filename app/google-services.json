@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "338138240302",
+    "project_id": "android-cicd-2e5d0",
+    "storage_bucket": "android-cicd-2e5d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338138240302:android:11a6373fc39051cbf296bf",
+        "android_client_info": {
+          "package_name": "com.example.timer_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDf1Gsf8US2cYVByTv-fkWmUTHR7v6ZmBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
