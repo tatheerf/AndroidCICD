@@ -1,8 +1,8 @@
 name: AndroidBuild
 on:
-  pull_request :
+  pull_request:
     branches : [ master ]
-  push :
+  push:
     branches : [ master ]
 
 jobs:
