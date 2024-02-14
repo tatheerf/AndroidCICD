@@ -51,6 +51,27 @@ jobs: #tasks you command github actions to execute through yaml file --series of
           name: unit_test_report
           path: app/build/reports/tests/testDebugUnitTest/
 
+  instrumentation-test: #create a build
+    needs: [test]
+    runs-on: macos-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.
+    steps: #actions perform while executing above job
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
+      - name: Run espresso tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '33'
+          script: ./gradlew connectedCheck
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: Instrumentation_test_report
+          path: app/build/reports/androidTests/connected/
 
 
 
