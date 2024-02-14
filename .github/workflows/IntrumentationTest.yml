@@ -10,10 +10,16 @@ on: #events on which the job is triggered
 jobs: #tasks you command github actions to execute through yaml file --series of steps that are usually executed sequentially on the same runner
   instrumentation-test: #create a build
     name: Instrumentation Test
-    runs-on : ubuntu-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.
+    runs-on : macos-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.
     steps: #actions perform while executing above job
       - name: Checkout
         uses: actions/checkout@v4.1.1
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.0.0
+        with:
+          java-version: '18'
+          distribution: 'adopt'
 
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
