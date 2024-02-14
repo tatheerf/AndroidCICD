@@ -1,0 +1,39 @@
+name: Instrumentation Test #name of the workflow
+on: #events on which the job is triggered
+  workflow_dispatch:
+    inputs:
+      release_notes:
+        type: string
+        required: true
+        default: 'Manual Debug Build'
+
+jobs: #tasks you command github actions to execute through yaml file --series of steps that are usually executed sequentially on the same runner
+  instrumentation-test: #create a build
+    name: Instrumentation Test
+    runs-on : ubuntu-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.
+    steps: #actions perform while executing above job
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
+      - name: Run espresso tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '29'
+          script: ./gradlew connectedCheck
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: Instrumentation_test_report
+          path: app/build/reports/androidTests/connected/
+
+
+
+
+
