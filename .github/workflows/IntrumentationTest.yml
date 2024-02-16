@@ -52,6 +52,12 @@ jobs: #tasks you command github actions to execute through yaml file --series of
           java-version: '18'
           distribution: 'adopt'
 
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
       - name: SonarCloud Scan
         run: ./gradlew app:sonarqube -Dsonar.login = ${{ secrets.SONAR_TOKEN}}
         env:
