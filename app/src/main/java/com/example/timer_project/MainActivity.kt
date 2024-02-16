@@ -33,8 +33,6 @@ class MainActivity : AppCompatActivity() {
 //                binding.tvTimer.text  = "00:00:00"
             }
         }.start()
-
-
     }
 
     private fun clickListener() {

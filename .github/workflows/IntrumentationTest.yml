@@ -39,6 +39,23 @@ jobs: #tasks you command github actions to execute through yaml file --series of
           name: Instrumentation_test_report
           path: app/build/reports/androidTests/connected/
 
+  static-code-analysis: #create a build
+    needs: [instrumentation-test]
+    runs-on: ubuntu-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.
+    steps: #actions perform while executing above job
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.0.0
+        with:
+          java-version: '18'
+          distribution: 'adopt'
+
+      - name: SonarCloud Scan
+        run: ./gradlew app:sonarqube -Dsonar.login = ${{ secrets.SONAR_TOKEN}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 
