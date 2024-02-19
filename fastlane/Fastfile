@@ -26,7 +26,7 @@ platform :android do
     app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
 
     version_codes = google_play_track_version_codes(
-      package_name: app_identifier,
+      package_name: com.example.timer_project,
       track: "internal",
       json_key: ENV["ANDROID_JSON_KEY_FILE"]
     )
