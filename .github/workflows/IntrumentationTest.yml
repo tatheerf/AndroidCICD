@@ -8,36 +8,36 @@ on: #events on which the job is triggered
         default: 'Manual Debug Build'
 
 jobs: #tasks you command github actions to execute through yaml file --series of steps that are usually executed sequentially on the same runner
-#  instrumentation-test: #create a build
-#    name: Instrumentation Test
-#    runs-on : macos-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.
-#    steps: #actions perform while executing above job
-#      - name: Checkout
-#        uses: actions/checkout@v4.1.1
-#
-#      - name: Setup Java JDK
-#        uses: actions/setup-java@v4.0.0
-#        with:
-#          java-version: '18'
-#          distribution: 'adopt'
-#
-#      - name: Setup Gradle
-#        uses: gradle/gradle-build-action@v2
-#
-#      - name: Change wrapper permissions
-#        run: chmod +x ./gradlew
-#
-#      - name: Run espresso tests
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: '29'
-#          script: ./gradlew connectedCheck
-#
-#      - name: Upload Test Report
-#        uses: actions/upload-artifact@v3.1.3
-#        with:
-#          name: Instrumentation_test_report
-#          path: app/build/reports/androidTests/connected/
+  instrumentation-test: #create a build
+    name: Instrumentation Test
+    runs-on : macos-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.
+    steps: #actions perform while executing above job
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.0.0
+        with:
+          java-version: '18'
+          distribution: 'adopt'
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
+      - name: Run espresso tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '29'
+          script: ./gradlew connectedCheck
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: Instrumentation_test_report
+          path: app/build/reports/androidTests/connected/
 
   static-code-analysis: #create a build
     runs-on: ubuntu-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.
