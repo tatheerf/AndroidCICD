@@ -7,6 +7,9 @@ on: #events on which the job is triggered
         required: true
         default: 'Manual Debug Build'
 
+#  push:
+#  branches: [ main ]
+
 jobs: #tasks you command github actions to execute through yaml file --series of steps that are usually executed sequentially on the same runner
   build: #create a build
     runs-on : ubuntu-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.

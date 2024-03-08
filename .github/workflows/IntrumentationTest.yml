@@ -58,10 +58,11 @@ jobs: #tasks you command github actions to execute through yaml file --series of
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
-      - name: SonarCloud Scan
-        run: ./gradlew app:sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN}}
+      - name: Code Analysis - SonarQube
+        run: ./gradlew app:sonarqube -Dsonar.projectKey=AndroidCICD
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
 
 

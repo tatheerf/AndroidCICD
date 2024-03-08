@@ -5,7 +5,6 @@ plugins {
     id "com.google.gms.google-services"
     id 'org.sonarqube'
 }
-
 android {
     namespace 'com.example.timer_project'
     compileSdk 34
@@ -35,6 +34,20 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+}
+
+sonarqube{
+    properties {
+        property "sonar.projectName","AndroidCICD"
+        property "sonar.projectKey","AndroidCICD"
+        property "sonar.host.url","http://localhost:9090"
+        property "sonar.language","kotlin"
+        property "sonar.sources","src/main/java"
+        property "sonar.sourceEncoding","UTF-8"
+        property "sonar.login","admin"
+        property "sonar.password","12345"
+
     }
 }
 
