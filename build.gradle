@@ -3,11 +3,14 @@
 buildscript {
 
     dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.0'
 
         classpath "com.google.dagger:hilt-android-gradle-plugin:2.44"
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21'
         classpath 'com.google.gms:google-services:4.2.0'
         classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7.1'
+        classpath 'org.jacoco:org.jacoco.core:0.8.5'
+
 
     }
     repositories {

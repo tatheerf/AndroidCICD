@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id "com.google.gms.google-services"
     id 'org.sonarqube'
+    id 'jacoco'
 }
 android {
     namespace 'com.example.timer_project'
@@ -23,6 +24,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug{
         }
     }
     compileOptions {
@@ -50,7 +53,9 @@ android {
 //
 //    }
 //}
-
+jacoco {
+    toolVersion = '0.8.5'
+}
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
