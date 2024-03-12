@@ -125,10 +125,10 @@ jobs:
           fi
 
 
-      - name: Move APK files to appropriate folders
-        run: |
-          mv app/build/outputs/apk/debug/app-debug.apk apk-files/main/app-debug-${{ github.run_number }}.apk
-          mv app/build/outputs/apk/release/app-release-unsigned.apk apk-files/main/app-release-unsigned-${{ github.run_number }}.apk
+#      - name: Move APK files to appropriate folders
+#        run: |
+#          mv app/build/outputs/apk/debug/app-debug.apk apk-files/main/app-debug-${{ github.run_number }}.apk
+#          mv app/build/outputs/apk/release/app-release-unsigned.apk apk-files/main/app-release-unsigned-${{ github.run_number }}.apk
 
       - name: Upload APK files to JFrog Artifactory
         run: |
