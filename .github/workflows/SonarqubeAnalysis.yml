@@ -120,14 +120,14 @@ jobs:
         run: |
           if [[ ${{ github.ref }} == 'refs/heads/qa' ]]; then
              mkdir -p apk-files/qa
-          elif [[ ${{ github.ref }} == 'refs/heads/master' ]]; then
-              mkdir -p apk-files/master
+          elif [[ ${{ github.ref }} == 'refs/heads/main' ]]; then
+              mkdir -p apk-files/main
           fi
 
-#      - name: Move APK files to appropriate folders
-#        run: |
-#          mv app/build/outputs/apk/debug/app-debug.apk apk-files/qa/app-debug-${{ github.run_number }}.apk
-#          mv app/build/outputs/apk/release/app-release-unsigned.apk apk-files/qa/app-release-unsigned-${{ github.run_number }}.apk
+      - name: Move APK files to appropriate folders
+        run: |
+          mv app/build/outputs/apk/debug/app-debug.apk apk-files/qa/app-debug-${{ github.run_number }}.apk
+          mv app/build/outputs/apk/release/app-release-unsigned.apk apk-files/qa/app-release-unsigned-${{ github.run_number }}.apk
 
       - name: Upload APK files to JFrog Artifactory
         run: |
