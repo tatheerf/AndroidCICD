@@ -63,62 +63,7 @@ jobs: #tasks you command github actions to execute through yaml file --series of
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: static-code-analysis
 
-    steps:
-      - name: Check out Git Repository
-        uses: actions/checkout@v2
-
-      - name: Download apk-files Artifactory
-        uses: actions/download-artifact@v3
-        with:
-          name: apk-files-artifactory
-          path: ${{ github.workspace }}/apk-files/
-      - name: Display structure of downloaded files of Artifact
-        run: ls -R
-        working-directory: ${{ github.workspace }}/apk-files/
-
-      - name: Public IP of Github Hosted Runner
-        id: ip
-        uses: haythem/public-ip@v1.3
-
-
-#        #The workflow runs an AWS CLI command to authorize the GitHub Actions IP address to access the specified security group on AWS.
-#        #This step is necessary to allow the workflow to communicate with AWS services like EC2 or S3.
-#      - name: Add Github Actions IP to Security group
-#        run: |
-#            aws ec2 authorize-security-group-ingress --group-id ${{ secrets.JFROG_SG_ID }} --protocol tcp --port 8082 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-#        env:
-#            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#            AWS_DEFAULT_REGION: 'us-east-1'
-
-      - name: Set up JFrog CLI
-        uses: jfrog/setup-jfrog-cli@v3
-        with:
-            version: latest
-        env:
-            JF_URL: ${{ secrets.JF_URL }}
-            JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-
-      - name: Create folders for QA and master branches in apk-files
-        run: |
-            if [[ ${{ github.ref }} == 'refs/heads/qa' ]]; then
-               mkdir -p apk-files/qa
-            elif [[ ${{ github.ref }} == 'refs/heads/master' ]]; then
-                mkdir -p apk-files/master
-            fi
-
-      - name: Move APK files to appropriate folders
-        run: |
-            mv app/build/outputs/apk/debug/app-debug.apk apk-files/qa/app-debug-${{ github.run_number }}.apk
-            mv app/build/outputs/apk/release/app-release-unsigned.apk apk-files/qa/app-release-unsigned-${{ github.run_number }}.apk
-
-      - name: Upload APK files to JFrog Artifactory
-        run: |
-            jfrog rt u "apk-files/qa/*.apk" android-artifact/ --build-name=my-build --build-number=${{ github.run_number }}
 
 
 
