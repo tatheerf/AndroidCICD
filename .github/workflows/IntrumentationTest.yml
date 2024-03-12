@@ -43,7 +43,7 @@ jobs: #tasks you command github actions to execute through yaml file --series of
     runs-on: ubuntu-latest #runner is the remote computer that GitHub Actions uses to execute the jobs you tell it to.
     steps: #actions perform while executing above job
       - name: Checkout
-        uses: actions/checkout@v4.1.1d
+        uses: actions/checkout@v4.1.1
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4.0.0
