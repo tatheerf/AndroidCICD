@@ -65,7 +65,7 @@ jobs: #tasks you command github actions to execute through yaml file --series of
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: static-code-analysis
     if:
       contains('
       refs/heads/master
