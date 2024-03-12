@@ -124,11 +124,15 @@ jobs:
               mkdir -p apk-files/main
           fi
 
+      - name: List APK files
+        run: ls -l app/build/outputs/apk/
+
+
       - name: Move APK files to appropriate folders
         run: |
-          mv app/build/outputs/apk/debug/app-debug.apk apk-files/qa/app-debug-${{ github.run_number }}.apk
-          mv app/build/outputs/apk/release/app-release-unsigned.apk apk-files/qa/app-release-unsigned-${{ github.run_number }}.apk
+          mv app/build/outputs/apk/debug/app-debug.apk apk-files/main/app-debug-${{ github.run_number }}.apk
+          mv app/build/outputs/apk/release/app-release-unsigned.apk apk-files/main/app-release-unsigned-${{ github.run_number }}.apk
 
       - name: Upload APK files to JFrog Artifactory
         run: |
-          jfrog rt u "apk-files/qa/*.apk" android-artifact/ --build-name=my-build --build-number=${{ github.run_number }}
+          jfrog rt u "apk-files/main/*.apk" android-artifact/ --build-name=my-build --build-number=${{ github.run_number }}
