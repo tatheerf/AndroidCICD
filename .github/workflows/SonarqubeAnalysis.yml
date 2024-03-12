@@ -124,9 +124,6 @@ jobs:
               mkdir -p apk-files/main
           fi
 
-      - name: List APK files
-        run: ls -l app/build/outputs/apk/
-
 
       - name: Move APK files to appropriate folders
         run: |
